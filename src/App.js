@@ -12,12 +12,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends React.Component {
   state = {
     todos: [],
-    item: ''
+    item: '',
+    id: uuidv4(),
+    isEdit: false
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit is called !!!");
+
+    const newItem = {
+      name: this.state.item,
+      id: this.state.id
+    };
+
+    this.setState({
+      item: '',
+      todos: [...this.state.todos, newItem],
+    });
+
   }
 
   handleChange = (e) => {
@@ -32,7 +44,9 @@ class App extends React.Component {
   }
 
   handleDelete = () => {
-    console.log("handleDelete is called !!!")
+    this.setState({
+      todos: []
+    })
   }
 
   render() {
@@ -44,6 +58,7 @@ class App extends React.Component {
             <TodoInput
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
+              todoItem={this.state.item}
             />
 
             <TodoList
