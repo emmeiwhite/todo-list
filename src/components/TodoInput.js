@@ -6,7 +6,7 @@ class TodoInput extends Component {
     return (
       <React.Fragment>
         <h3 className="p-0 m-0">Todo Item</h3>
-        <form className="card p-4" onSubmit={handleSubmit}>
+        <form className="card p-4 shadow" onSubmit={handleSubmit}>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <label className="input-group-text" htmlFor="todoItem">
