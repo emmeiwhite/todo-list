@@ -12,6 +12,7 @@ class TodoList extends Component {
           todos.length > 0 && todos.map((todo => <List key={todo.id} id={todo.id} name={todo.name} handleDeleteItem={() => handleDeleteItem(todo.id)} handleEdit={() => handleEdit(todo.id)} />))
         }
 
+        {/* --- To clear our todos --- */}
         <button className="btn-danger btn-block form-control" onClick={handleDelete}>delete list</button>
       </ul>
     )

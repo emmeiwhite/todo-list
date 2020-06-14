@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class TodoInput extends Component {
   render() {
-    const { handleSubmit, handleChange, todoItem } = this.props;
+    const { handleSubmit, handleChange, todoItem, editItem, isInputFocused } = this.props;
     return (
       <React.Fragment>
         <h3 className="p-0 m-0">Todo Item</h3>
@@ -18,12 +18,13 @@ class TodoInput extends Component {
               required placeholder="Todo Item" id="todoItem"
               onChange={handleChange}
               value={todoItem}
+              ref={(input) => { this.todoInput = input }}
             />
           </div>
 
-          <button className="btn btn-primary btn-block" type="submit">add item</button>
+          <button className={editItem ? 'btn  btn-block btn-secondary text-white' : 'btn  btn-block btn-primary'} type="submit">add item</button>
         </form>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }

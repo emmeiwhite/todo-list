@@ -14,7 +14,8 @@ class App extends React.Component {
     todos: [],
     item: '',
     id: uuidv4(),
-    isEdit: false
+    editItem: false,
+    isInputFocused: false
   };
 
   /* --- Form Submit --- */
@@ -29,7 +30,9 @@ class App extends React.Component {
     this.setState({
       item: '',
       todos: [...this.state.todos, newItem],
-      id: uuidv4()
+      id: uuidv4(),
+      editItem: false,
+      isInputFocused: false
     });
 
   }
@@ -58,9 +61,16 @@ class App extends React.Component {
 
   /** --- to handle editing of the todo --- */
   handleEdit = (id) => {
-    console.log("handleEdit is called !!!" + id);
-    const item = this.state.todos.find(item => item.id === id);
-    console.log(item);
+    const filteredTodos = this.state.todos.filter(item => item.id !== id);
+    const selectedItem = this.state.todos.find(item => item.id === id);
+
+    this.setState({
+      todos: filteredTodos,
+      item: selectedItem.name,
+      id: id,
+      editItem: true,
+      isInputFocused: true
+    })
   }
 
 
@@ -74,6 +84,8 @@ class App extends React.Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               todoItem={this.state.item}
+              editItem={this.state.editItem}
+              isInputFocused={this.state.isInputFocused}
             />
 
             <TodoList
@@ -81,6 +93,7 @@ class App extends React.Component {
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
               handleDeleteItem={this.handleDeleteItem}
+              editItem={this.state.editItem}
             />
           </div>
         </div>
