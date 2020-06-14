@@ -17,6 +17,7 @@ class App extends React.Component {
     isEdit: false
   };
 
+  /* --- Form Submit --- */
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,26 +29,40 @@ class App extends React.Component {
     this.setState({
       item: '',
       todos: [...this.state.todos, newItem],
+      id: uuidv4()
     });
 
   }
 
+  /** --- handleChange --- */
   handleChange = (e) => {
-    console.log("handleChange is called !!!");
     this.setState({
       item: e.target.value
     });
   }
 
-  handleEdit = (id) => {
-    console.log("handleEdit is called !!!");
+  /**  --- handleDelete of particular item --- */
+  handleDeleteItem = (id) => {
+    const filteredTodos = this.state.todos.filter(item => item.id !== id);
+    this.setState({
+      todos: filteredTodos
+    })
   }
 
+  /** --- delete all todos --- */
   handleDelete = () => {
     this.setState({
       todos: []
     })
   }
+
+  /** --- to handle editing of the todo --- */
+  handleEdit = (id) => {
+    console.log("handleEdit is called !!!" + id);
+    const item = this.state.todos.find(item => item.id === id);
+    console.log(item);
+  }
+
 
   render() {
     const { todos } = this.state;
@@ -65,6 +80,7 @@ class App extends React.Component {
               todos={todos}
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
+              handleDeleteItem={this.handleDeleteItem}
             />
           </div>
         </div>
