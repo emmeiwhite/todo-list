@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 class TodoInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.todoInput = React.createRef();
+  }
+
+  componentDidUpdate() {
+    this.props.isInputFocused && this.todoInput.current.focus();
+  }
+
   render() {
     const { handleSubmit, handleChange, todoItem, editItem, isInputFocused } = this.props;
     return (
@@ -13,12 +23,14 @@ class TodoInput extends Component {
                 <i className="fas fa-shopping-cart" aria-hidden="true"></i>
               </label>
             </div>
+
             <input
               type="text" className="form-control"
               required placeholder="Todo Item" id="todoItem"
               onChange={handleChange}
               value={todoItem}
-              ref={(input) => { this.todoInput = input }}
+              autoFocus={isInputFocused}
+              ref={this.todoInput}
             />
           </div>
 

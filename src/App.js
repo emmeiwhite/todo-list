@@ -31,8 +31,7 @@ class App extends React.Component {
       item: '',
       todos: [...this.state.todos, newItem],
       id: uuidv4(),
-      editItem: false,
-      isInputFocused: false
+      editItem: false
     });
 
   }
@@ -65,11 +64,11 @@ class App extends React.Component {
     const selectedItem = this.state.todos.find(item => item.id === id);
 
     this.setState({
+      isInputFocused: true,
       todos: filteredTodos,
       item: selectedItem.name,
       id: id,
-      editItem: true,
-      isInputFocused: true
+      editItem: true
     })
   }
 
@@ -93,7 +92,6 @@ class App extends React.Component {
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
               handleDeleteItem={this.handleDeleteItem}
-              editItem={this.state.editItem}
             />
           </div>
         </div>
