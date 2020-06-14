@@ -34,7 +34,7 @@ class TodoInput extends Component {
             />
           </div>
 
-          <button className={editItem ? 'btn  btn-block btn-secondary text-white' : 'btn  btn-block btn-primary'} type="submit">add item</button>
+          <button className={editItem ? 'btn  btn-block btn-info text-white' : 'btn  btn-block btn-primary'} type="submit">add item</button>
         </form>
       </React.Fragment >
     )
